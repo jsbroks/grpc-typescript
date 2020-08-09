@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package users;
+
+import "google/protobuf/empty.proto";
+
+enum UserStatus {
+    UNKNOWN = 0;
+    OFFLINE = 1;
+    BUSY = 2;
+    AVAILABLE = 3;
+}
+
+message User {
+    int32 id = 1;
+    string name = 2;
+    int32 age = 3;
+    UserStatus status = 4;
+}
+
+message UserRequest {
+    int32 id = 1;
+}
+
+service Users {
+    rpc GetUser(UserRequest) returns (User) {};
+    rpc CreateUser(stream User) returns (google.protobuf.Empty) {}
+    rpc GetUsers(google.protobuf.Empty) returns (stream User) {};
+} 

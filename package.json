@@ -1,0 +1,21 @@
+{
+  "name": "ts-grpc",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/google-protobuf": "^3.7.2",
+    "grpc-tools": "^1.9.1",
+    "grpc_tools_node_protoc_ts": "^4.1.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "grpc": "^1.24.3"
+  },
+  "scripts": {
+    "build": "sh proto/build.sh",
+    "server": "ts-node server/index.ts",
+    "client": "ts-node client/index.ts"
+  }
+}
