@@ -1,0 +1,10 @@
+{
+    "proto": "./proto/users.proto",
+    "call": "users.Users/GetUser",
+    "insecure": true,
+    "async": true,
+    "data": {
+        "id": "2"
+    },
+    "host": "0.0.0.0:3000"
+}

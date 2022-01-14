@@ -15,7 +15,10 @@
   },
   "scripts": {
     "build": "sh proto/build.sh",
-    "server": "ts-node server/index.ts",
-    "client": "ts-node client/index.ts"
+    "run:server": "ts-node server/index.ts",
+    "run:client": "ts-node client/index.ts",
+    "test:cli": "sh scripts/run_cli.sh",
+    "test:config": "sh scripts/run_cfg.sh",
+    "test:go": "sh scripts/run_go.sh"
   }
 }
