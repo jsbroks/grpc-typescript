@@ -15,7 +15,7 @@ interface IUsersService extends grpc.ServiceDefinition<grpc.UntypedServiceImplem
 }
 
 interface IUsersService_IGetUser extends grpc.MethodDefinition<users_pb.UserRequest, users_pb.User> {
-    path: string; // "/users.Users/GetUser"
+    path: "/users.Users/GetUser";
     requestStream: false;
     responseStream: false;
     requestSerialize: grpc.serialize<users_pb.UserRequest>;
@@ -24,7 +24,7 @@ interface IUsersService_IGetUser extends grpc.MethodDefinition<users_pb.UserRequ
     responseDeserialize: grpc.deserialize<users_pb.User>;
 }
 interface IUsersService_ICreateUser extends grpc.MethodDefinition<users_pb.User, google_protobuf_empty_pb.Empty> {
-    path: string; // "/users.Users/CreateUser"
+    path: "/users.Users/CreateUser";
     requestStream: true;
     responseStream: false;
     requestSerialize: grpc.serialize<users_pb.User>;
@@ -33,7 +33,7 @@ interface IUsersService_ICreateUser extends grpc.MethodDefinition<users_pb.User,
     responseDeserialize: grpc.deserialize<google_protobuf_empty_pb.Empty>;
 }
 interface IUsersService_IGetUsers extends grpc.MethodDefinition<google_protobuf_empty_pb.Empty, users_pb.User> {
-    path: string; // "/users.Users/GetUsers"
+    path: "/users.Users/GetUsers";
     requestStream: false;
     responseStream: true;
     requestSerialize: grpc.serialize<google_protobuf_empty_pb.Empty>;
