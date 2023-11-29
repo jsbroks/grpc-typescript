@@ -1,4 +1,4 @@
-import { Server, ServerCredentials } from "@grpc/grpc-js";
+import { Server, ServerCredentials } from "grpc";
 import { UsersService } from "../proto/users_grpc_pb";
 import { UsersServer } from "./services";
 

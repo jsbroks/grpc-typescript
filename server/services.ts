@@ -1,11 +1,10 @@
 import {
-  ServerReadableStream,
   ServerUnaryCall,
-  ServerWritableStream,
-  ServiceError,
   sendUnaryData,
-  status,
-} from "@grpc/grpc-js";
+  ServiceError,
+  ServerWritableStream,
+  ServerReadableStream,
+} from "grpc";
 import { Empty } from "google-protobuf/google/protobuf/empty_pb";
 
 import { IUsersServer } from "../proto/users_grpc_pb";
@@ -13,10 +12,7 @@ import { User, UserRequest } from "../proto/users_pb";
 import { users } from "./db";
 
 export class UsersServer implements IUsersServer {
-  getUser(
-    call: ServerUnaryCall<UserRequest, User>,
-    callback: sendUnaryData<User>
-  ) {
+  getUser(call: ServerUnaryCall<UserRequest>, callback: sendUnaryData<User>) {
     const userId = call.request.getId();
     const user = users.find((u) => u.getId() === userId);
 
@@ -24,9 +20,6 @@ export class UsersServer implements IUsersServer {
       const error: ServiceError = {
         name: "User Missing",
         message: `User with ID ${userId} does not exist.`,
-        code: status.NOT_FOUND,
-        details: `User with ID ${userId} does not exist on the server`,
-        metadata: call.metadata,
       };
       callback(error, null);
       return;
@@ -36,14 +29,14 @@ export class UsersServer implements IUsersServer {
     callback(null, user);
   }
 
-  getUsers(call: ServerWritableStream<Empty, User>) {
+  getUsers(call: ServerWritableStream<Empty>) {
     console.log(`getUsers: streaming all users.`);
     for (const user of users) call.write(user);
     call.end();
   }
 
   createUser(
-    call: ServerReadableStream<ServerReadableStream<Empty, User>, Empty>,
+    call: ServerReadableStream<Empty>,
     callback: sendUnaryData<Empty>
   ) {
     console.log(`createUsers: creating new users from stream.`);
